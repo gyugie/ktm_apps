@@ -1,71 +1,61 @@
 import 'package:flutter/material.dart';
+import 'package:ktm_apps/pages/homePage.dart';
 
 class Menus extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: BottomMenus(),
+      home: ListMenus(),
     );
   }
 }
 
-class BottomMenus extends StatefulWidget {
-  BottomMenus({Key key}) : super(key: key);
-
+class ListMenus extends StatefulWidget {
   @override
-  _BottomMenusState createState() => _BottomMenusState();
+ State<StatefulWidget> createState() {
+    return _ListMenusState();
+  }
 }
 
-class _BottomMenusState extends State<BottomMenus> {
-  int _selectedIndex = 0;
-  static const TextStyle optionStyle = 
-          TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
-  static const List<Widget> _widgetOptions = <Widget> [
-    Text(
-      'Index 0: Home',
-      style: optionStyle,
-    ),
-    Text(
-      'Index 1: Event',
-      style: optionStyle
-    ),
-    Text(
-      'Index 2: News',
-      style: optionStyle,
-    )
+class _ListMenusState extends State<ListMenus> {
+  int _currentIndex = 0;
+  final List<Widget> _children = [
+    HomePage(Colors.grey),
+    HomePage(Colors.red),
+    HomePage(Colors.orange),
   ];
-
-  void _onItemTapped(int index){
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
+void onTabTapped(int index) {
+   setState(() {
+     _currentIndex = index;
+   });
+ }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: _widgetOptions.elementAt(_selectedIndex),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            title: Text('Home')
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.calendar_today),
-            title: Text('Events')
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.new_releases),
-            title: Text('News')
-          ),
-        ],
-        currentIndex: _selectedIndex,
-        selectedItemColor: Colors.amber[800],
-        onTap: _onItemTapped,
-      ),
-    );
+    //  appBar: AppBar(
+    //    title: Text('My Flutter App'),
+    //  ),
+     body: _children[_currentIndex],
+     bottomNavigationBar: BottomNavigationBar(
+       onTap: onTabTapped,
+       currentIndex: _currentIndex,
+       selectedItemColor: Colors.amber[800],
+       items: [
+         BottomNavigationBarItem(
+           icon: new Icon(Icons.home),
+           title: new Text('Home'),
+         ),
+         BottomNavigationBarItem(
+           icon: new Icon(Icons.calendar_today),
+           title: new Text('Events'),
+         ),
+         BottomNavigationBarItem(
+           icon: Icon(Icons.info),
+           title: Text('News')
+         )
+       ],
+     ),
+   );
   }
 }
