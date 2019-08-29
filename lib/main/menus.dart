@@ -23,6 +23,8 @@ class _ListMenusState extends State<ListMenus> {
     HomePage(Colors.grey),
     HomePage(Colors.red),
     HomePage(Colors.orange),
+    HomePage(Colors.orange),
+    
   ];
 void onTabTapped(int index) {
    setState(() {
@@ -38,22 +40,28 @@ void onTabTapped(int index) {
     //  ),
      body: _children[_currentIndex],
      bottomNavigationBar: BottomNavigationBar(
+       backgroundColor: Colors.orange,
+       type: BottomNavigationBarType.fixed,
        onTap: onTabTapped,
        currentIndex: _currentIndex,
-       selectedItemColor: Colors.amber[800],
+      //  selectedItemColor: Colors.amber[50],
        items: [
          BottomNavigationBarItem(
-           icon: new Icon(Icons.home),
-           title: new Text('Home'),
+           icon: new Icon(Icons.home, color: Colors.white),
+           title: new Text('Home', style: TextStyle(color: Colors.white)),
          ),
          BottomNavigationBarItem(
-           icon: new Icon(Icons.calendar_today),
-           title: new Text('Events'),
+           icon: new Icon(Icons.calendar_today, color: Colors.white),
+           title: new Text('Events', style: TextStyle(color: Colors.white)),
          ),
          BottomNavigationBarItem(
-           icon: Icon(Icons.info),
-           title: Text('News')
-         )
+           icon: Icon(Icons.new_releases, color: Colors.white),
+           title: Text('News', style: TextStyle(color: Colors.white))
+         ),
+          BottomNavigationBarItem(
+           icon: Icon(Icons.new_releases, color: Colors.white),
+           title: Text('News', style: TextStyle(color: Colors.white))
+         ),
        ],
      ),
    );

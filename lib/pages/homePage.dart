@@ -5,8 +5,9 @@ class HomePage extends StatelessWidget {
   HomePage(this.color);
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: color,
+    return Scaffold(
+      body: Text('test'),
+      backgroundColor: color,
     );
   }
 }
